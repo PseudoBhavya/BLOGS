@@ -1,0 +1,102 @@
+@extends('admin.layouts.admin')
+
+@section('title', 'Create New Post — BlogYaari')
+
+@section('admin_content')
+<div class="mb-10 flex items-center gap-4">
+    <a href="{{ route('admin.blogs.index') }}" class="p-2 hover:bg-muted rounded-xl transition-all">
+        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+    </a>
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight mb-2">Create New Post</h1>
+        <p class="text-muted-foreground">Draft your next masterpiece and share it with the world.</p>
+    </div>
+</div>
+
+<form action="{{ route('admin.blogs.store') }}" method="POST" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    @csrf
+    
+    <!-- Main Content -->
+    <div class="lg:col-span-2 space-y-6">
+        <div class="glass p-10 rounded-3xl shadow-sm">
+            <div class="space-y-8">
+                <div>
+                    <label class="block text-sm font-bold mb-3">Blog Title</label>
+                    <input type="text" name="title" value="{{ old('title') }}" required class="w-full px-6 py-4 bg-muted/30 border border-transparent rounded-2xl focus:border-accent focus:bg-white outline-none transition-all text-xl font-bold" placeholder="The Future of Smarter Blogging...">
+                    @error('title') <p class="mt-2 text-xs text-danger">{{ $message }}</p> @enderror
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold mb-3">Short Description</label>
+                    <textarea name="short_description" required rows="3" class="w-full px-6 py-4 bg-muted/30 border border-transparent rounded-2xl focus:border-accent focus:bg-white outline-none transition-all resize-none" placeholder="A brief hook for your readers...">{{ old('short_description') }}</textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold mb-3">Full Article Content</label>
+                    <textarea name="content" required rows="15" class="w-full px-6 py-4 bg-muted/30 border border-transparent rounded-2xl focus:border-accent focus:bg-white outline-none transition-all" placeholder="Write your story here...">{{ old('content') }}</textarea>
+                    <p class="mt-2 text-xs text-muted-foreground italic">Tip: Use double enter for new paragraphs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Settings -->
+    <div class="space-y-6">
+        <div class="glass p-8 rounded-3xl shadow-sm">
+            <h3 class="font-bold mb-6 text-sm uppercase tracking-widest text-muted-foreground">Publishing Settings</h3>
+            
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-xs font-bold mb-2">Category</label>
+                    <select name="category_id" required class="w-full px-4 py-3 bg-muted/30 border border-transparent rounded-xl focus:border-accent focus:bg-white outline-none transition-all text-sm appearance-none">
+                        @foreach($categories as $cat)
+                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold mb-2">Publish Date</label>
+                    <input type="date" name="publish_date" value="{{ date('Y-m-d') }}" required class="w-full px-4 py-3 bg-muted/30 border border-transparent rounded-xl focus:border-accent focus:bg-white outline-none transition-all text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold mb-2">Status</label>
+                    <select name="status" required class="w-full px-4 py-3 bg-muted/30 border border-transparent rounded-xl focus:border-accent focus:bg-white outline-none transition-all text-sm">
+                        <option value="draft">Draft</option>
+                        <option value="published">Published</option>
+                        <option value="archived">Archived</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass p-8 rounded-3xl shadow-sm">
+            <h3 class="font-bold mb-6 text-sm uppercase tracking-widest text-muted-foreground">Featured Media</h3>
+            <div>
+                <label class="block text-xs font-bold mb-2">Image URL</label>
+                <input type="url" name="featured_image" id="image_url" class="w-full px-4 py-3 bg-muted/30 border border-transparent rounded-xl focus:border-accent focus:bg-white outline-none transition-all text-sm mb-4" placeholder="https://images.unsplash.com/...">
+                <div id="image_preview" class="aspect-video rounded-xl bg-muted overflow-hidden flex items-center justify-center border-2 border-dashed border-border group">
+                    <p class="text-xs text-muted-foreground group-hover:text-accent transition-colors">No image selected</p>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="w-full py-4 bg-primary text-white rounded-2xl font-bold shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+            <i data-lucide="check-circle" class="w-5 h-5"></i>
+            Publish Story
+        </button>
+    </div>
+</form>
+
+<script>
+    $('#image_url').on('input', function() {
+        const url = $(this).val();
+        if (url) {
+            $('#image_preview').html(`<img src="${url}" class="w-full h-full object-cover">`);
+        } else {
+            $('#image_preview').html('<p class="text-xs text-muted-foreground">No image selected</p>');
+        }
+    });
+</script>
+@endsection
