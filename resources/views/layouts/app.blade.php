@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'BlogYaari — The Future of Smarter Blogging')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="theme-color" content="#111827">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
@@ -13,7 +16,7 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
-<body class="bg-background text-foreground selection:bg-accent/30">
+<body class="bg-background text-foreground selection:bg-accent/30" data-theme="dark">
     <!-- Reading Progress -->
     <div id="reading-progress" class="reading-progress" style="width: 0%"></div>
 
@@ -28,7 +31,14 @@
                 <a href="{{ route('home') }}" class="text-sm font-medium hover:text-accent transition-colors">Home</a>
                 <a href="{{ route('blogs.index') }}" class="text-sm font-medium hover:text-accent transition-colors">Blogs</a>
                 <a href="#" class="text-sm font-medium hover:text-accent transition-colors">Categories</a>
-                <a href="{{ route('admin.login') }}" class="px-5 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-all hover:scale-105">Admin Portal</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-2 px-3 py-2 rounded-full bg-surface text-muted-foreground border border-border">
+                    <i data-lucide="moon" class="w-4 h-4"></i>
+                    Dark Mode
+                </div>
+                <a href="{{ route('admin.login') }}" class="hidden md:block px-5 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-all hover:scale-105">Admin Portal</a>
             </div>
 
             <button id="mobile-menu-btn" class="md:hidden p-2">
@@ -97,19 +107,29 @@
         lucide.createIcons();
 
         // Navbar scroll effect
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 50) {
+        let scrollFrame = null;
+
+        function updateScrollState() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const pageHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = pageHeight > 0 ? (scrollTop / pageHeight) * 100 : 0;
+
+            if (scrollTop > 50) {
                 $('#navbar').addClass('glass shadow-sm h-16').removeClass('h-20');
             } else {
                 $('#navbar').removeClass('glass shadow-sm h-16').addClass('h-20');
             }
 
-            // Reading progress
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            $('#reading-progress').css('width', scrolled + "%");
-        });
+            $('#reading-progress').css('width', scrolled + '%');
+            scrollFrame = null;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (scrollFrame !== null) return;
+            scrollFrame = window.requestAnimationFrame(updateScrollState);
+        }, { passive: true });
+
+        updateScrollState();
 
         // Mobile menu toggle
         $('#mobile-menu-btn').click(function() {

@@ -1,0 +1,16 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="BlogYaari favicon">
+  <defs>
+    <linearGradient id="bg" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#1F2937"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="18" y1="14" x2="46" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#A855F7"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+  <circle cx="32" cy="32" r="20" fill="url(#accent)" opacity="0.16"/>
+  <path d="M24 18H35.2C40.2 18 43.5 20.7 43.5 24.9C43.5 28 41.8 30.1 39.1 31C42.4 31.7 44.7 34.1 44.7 38C44.7 43 40.8 46 35.1 46H24V18ZM30.3 29.6H34.1C36.2 29.6 37.4 28.6 37.4 27C37.4 25.2 36.2 24.3 34.1 24.3H30.3V29.6ZM30.3 40.2H35.1C37.5 40.2 38.7 39.1 38.7 37.4C38.7 35.5 37.4 34.4 35.1 34.4H30.3V40.2Z" fill="#F8FAFC"/>
+  <path d="M18 48L24 18" stroke="url(#accent)" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+</svg>

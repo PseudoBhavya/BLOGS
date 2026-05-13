@@ -4,15 +4,15 @@
 <!-- Hero Section -->
 <section class="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-primary">
     <!-- Video Background -->
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-40">
+    <video autoplay muted loop playsinline preload="none" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover opacity-35 pointer-events-none transform-gpu">
         <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260319_015952_e1deeb12-8fb7-4071-a42a-60779fc64ab6.mp4" type="video/mp4">
     </video>
     
     <!-- Overlay Gradient -->
     <div class="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/20 to-background"></div>
 
-    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center text-white">
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight animate-fade-up delay-100">
+    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center text-white pt-32">
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight animate-fade-up delay-100 mt-12">
             Publish with <span class="font-display italic text-accent">Confidence</span>
         </h1>
         
@@ -28,7 +28,7 @@
 
     <!-- Floating Dashboard Preview -->
     <div class="relative mt-20 w-full max-w-5xl mx-auto px-6 h-64 md:h-96 animate-float">
-        <div class="absolute inset-x-0 top-0 glass-dark rounded-2xl shadow-dashboard border border-white/10 overflow-hidden transform rotate-x-6 scale-95 opacity-90 transition-all hover:scale-100 hover:opacity-100 glow-hover duration-500">
+        <div class="absolute inset-x-0 top-0 glass-dark rounded-2xl shadow-dashboard border border-white/10 overflow-hidden transform-gpu rotate-x-6 scale-95 opacity-90 transition-all hover:scale-100 hover:opacity-100 glow-hover duration-500">
             <!-- Dashboard Sidebar -->
             <div class="flex h-[500px]">
                 <div class="w-64 border-r border-white/10 p-6 hidden md:block">

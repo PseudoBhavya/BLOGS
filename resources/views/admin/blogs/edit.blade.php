@@ -23,18 +23,18 @@
             <div class="space-y-8">
                 <div>
                     <label class="block text-sm font-bold mb-3">Blog Title</label>
-                    <input type="text" name="title" value="{{ old('title', $blog->title) }}" required class="w-full px-6 py-4 bg-muted/30 border border-transparent rounded-2xl focus:border-accent focus:bg-white outline-none transition-all text-xl font-bold" placeholder="The Future of Smarter Blogging...">
+                    <input type="text" name="title" value="{{ old('title', $blog->title) }}" required class="w-full px-6 py-4 bg-surface border border-border rounded-2xl focus:border-accent focus:bg-surface outline-none transition-all text-xl font-bold text-foreground" placeholder="The Future of Smarter Blogging...">
                     @error('title') <p class="mt-2 text-xs text-danger">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
                     <label class="block text-sm font-bold mb-3">Short Description</label>
-                    <textarea name="short_description" required rows="3" class="w-full px-6 py-4 bg-muted/30 border border-transparent rounded-2xl focus:border-accent focus:bg-white outline-none transition-all resize-none" placeholder="A brief hook for your readers...">{{ old('short_description', $blog->short_description) }}</textarea>
+                    <textarea name="short_description" required rows="3" class="w-full px-6 py-4 bg-surface border border-border rounded-2xl focus:border-accent focus:bg-surface outline-none transition-all resize-none text-foreground" placeholder="A brief hook for your readers...">{{ old('short_description', $blog->short_description) }}</textarea>
                 </div>
 
                 <div>
                     <label class="block text-sm font-bold mb-3">Full Article Content</label>
-                    <textarea name="content" required rows="15" class="w-full px-6 py-4 bg-muted/30 border border-transparent rounded-2xl focus:border-accent focus:bg-white outline-none transition-all" placeholder="Write your story here...">{{ old('content', $blog->content) }}</textarea>
+                    <textarea name="content" required rows="15" class="w-full px-6 py-4 bg-surface border border-border rounded-2xl focus:border-accent focus:bg-surface outline-none transition-all text-foreground" placeholder="Write your story here...">{{ old('content', $blog->content) }}</textarea>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
             <div class="space-y-6">
                 <div>
                     <label class="block text-xs font-bold mb-2">Category</label>
-                    <select name="category_id" required class="w-full px-4 py-3 bg-muted/30 border border-transparent rounded-xl focus:border-accent focus:bg-white outline-none transition-all text-sm appearance-none">
+                    <select name="category_id" required class="w-full px-4 py-3 bg-surface border border-border rounded-xl focus:border-accent focus:bg-surface outline-none transition-all text-sm appearance-none text-foreground">
                         @foreach($categories as $cat)
                         <option value="{{ $cat->id }}" {{ $blog->category_id == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
                         @endforeach
@@ -57,12 +57,12 @@
 
                 <div>
                     <label class="block text-xs font-bold mb-2">Publish Date</label>
-                    <input type="date" name="publish_date" value="{{ old('publish_date', $blog->publish_date->format('Y-m-d')) }}" required class="w-full px-4 py-3 bg-muted/30 border border-transparent rounded-xl focus:border-accent focus:bg-white outline-none transition-all text-sm">
+                    <input type="date" name="publish_date" value="{{ old('publish_date', $blog->publish_date->format('Y-m-d')) }}" required class="w-full px-4 py-3 bg-surface border border-border rounded-xl focus:border-accent focus:bg-surface outline-none transition-all text-sm text-foreground">
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold mb-2">Status</label>
-                    <select name="status" required class="w-full px-4 py-3 bg-muted/30 border border-transparent rounded-xl focus:border-accent focus:bg-white outline-none transition-all text-sm">
+                    <select name="status" required class="w-full px-4 py-3 bg-surface border border-border rounded-xl focus:border-accent focus:bg-surface outline-none transition-all text-sm text-foreground">
                         <option value="draft" {{ $blog->status == 'draft' ? 'selected' : '' }}>Draft</option>
                         <option value="published" {{ $blog->status == 'published' ? 'selected' : '' }}>Published</option>
                         <option value="archived" {{ $blog->status == 'archived' ? 'selected' : '' }}>Archived</option>
@@ -75,7 +75,7 @@
             <h3 class="font-bold mb-6 text-sm uppercase tracking-widest text-muted-foreground">Featured Media</h3>
             <div>
                 <label class="block text-xs font-bold mb-2">Image URL</label>
-                <input type="url" name="featured_image" id="image_url" value="{{ old('featured_image', $blog->featured_image) }}" class="w-full px-4 py-3 bg-muted/30 border border-transparent rounded-xl focus:border-accent focus:bg-white outline-none transition-all text-sm mb-4" placeholder="https://images.unsplash.com/...">
+                <input type="url" name="featured_image" id="image_url" value="{{ old('featured_image', $blog->featured_image) }}" class="w-full px-4 py-3 bg-surface border border-border rounded-xl focus:border-accent focus:bg-surface outline-none transition-all text-sm mb-4 text-foreground" placeholder="https://images.unsplash.com/...">
                 <div id="image_preview" class="aspect-video rounded-xl bg-muted overflow-hidden flex items-center justify-center border-2 border-dashed border-border group">
                     <img src="{{ $blog->featured_image }}" class="w-full h-full object-cover">
                 </div>

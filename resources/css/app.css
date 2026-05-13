@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap");
 
-@theme {
+:root {
     --color-background: hsl(0 0% 100%);
     --color-foreground: hsl(210 14% 17%);
     --color-primary: hsl(210 14% 17%);
@@ -38,6 +38,35 @@
         0 25px 80px -12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.06);
 }
 
+html.dark {
+    --color-background: hsl(210 17% 12%);
+    --color-foreground: hsl(210 14% 92%);
+    --color-primary: hsl(210 15% 20%);
+    --color-primary-foreground: hsl(0 0% 95%);
+    --color-secondary: hsl(210 15% 18%);
+    --color-secondary-foreground: hsl(0 0% 90%);
+    --color-muted: hsl(210 15% 18%);
+    --color-muted-foreground: hsl(184 5% 65%);
+    --color-accent: hsl(239 84% 67%);
+    --color-accent-foreground: hsl(0 0% 100%);
+    --color-border: hsl(210 14% 25%);
+    --color-ring: hsl(239 84% 67%);
+    --color-surface: hsl(210 15% 16%);
+    --color-surface-hover: hsl(210 15% 22%);
+    --color-danger: hsl(0 84% 60%);
+    --color-success: hsl(142 71% 45%);
+    --color-warning: hsl(38 92% 50%);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md:
+        0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+    --shadow-lg:
+        0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+    --shadow-xl:
+        0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+    --shadow-dashboard:
+        0 25px 80px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(0, 0, 0, 0.4);
+}
+
 /* Base */
 * {
     box-sizing: border-box;
@@ -51,6 +80,35 @@ body {
     background: var(--color-background);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+video,
+.animate-float,
+.hover-card,
+.reveal,
+.glass,
+.glass-dark {
+    will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    video {
+        display: none !important;
+    }
 }
 
 /* Glassmorphism */
@@ -65,6 +123,132 @@ body {
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Dark Mode Glass Styles */
+.dark .glass {
+    background: rgba(20, 25, 40, 0.7);
+    border: 1px solid rgba(100, 116, 139, 0.2);
+}
+.dark .glass-dark {
+    background: rgba(15, 20, 35, 0.8);
+    border: 1px solid rgba(100, 116, 139, 0.15);
+}
+
+.dashboard-metric-card {
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.04),
+        rgba(255, 255, 255, 0.02)
+    );
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    border-radius: 1.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.dashboard-metric-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+}
+
+.dashboard-metric-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.dashboard-icon.accent {
+    color: hsl(239 84% 67%);
+}
+
+.dashboard-icon.success {
+    color: hsl(142 71% 45%);
+}
+
+.dashboard-icon.warning {
+    color: hsl(38 92% 50%);
+}
+
+.dashboard-kicker {
+    color: var(--color-muted-foreground);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+}
+
+.dashboard-value {
+    font-size: clamp(2.2rem, 3vw, 3.25rem);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.4rem;
+}
+
+.dashboard-label {
+    color: var(--color-muted-foreground);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.dashboard-panel {
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.04),
+        rgba(255, 255, 255, 0.015)
+    );
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    border-radius: 2rem;
+    padding: 1.5rem;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18);
+}
+
+.dashboard-panel-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-panel-kicker {
+    color: var(--color-muted-foreground);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+}
+
+.dashboard-panel-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+@media (max-width: 767px) {
+    .dashboard-panel-header {
+        flex-direction: column;
+    }
 }
 
 /* Animations */

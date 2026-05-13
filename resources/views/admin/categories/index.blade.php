@@ -22,11 +22,11 @@
                 <i data-lucide="{{ $category->icon }}" class="w-7 h-7"></i>
             </div>
             <div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <a href="{{ route('admin.categories.edit', $category->id) }}" class="p-2 hover:bg-white rounded-lg transition-all text-muted-foreground"><i data-lucide="edit-3" class="w-4 h-4"></i></a>
+                <a href="{{ route('admin.categories.edit', $category->id) }}" class="p-2 hover:bg-surface rounded-lg transition-all text-muted-foreground"><i data-lucide="edit-3" class="w-4 h-4"></i></a>
                 <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" onsubmit="return confirm('Delete this category?')">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="p-2 hover:bg-white rounded-lg transition-all text-muted-foreground hover:text-danger"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    <button type="submit" class="p-2 hover:bg-surface rounded-lg transition-all text-muted-foreground hover:text-danger"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                 </form>
             </div>
         </div>

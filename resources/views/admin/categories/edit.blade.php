@@ -21,7 +21,7 @@
             
             <div>
                 <label class="block text-sm font-bold mb-3 px-1 text-foreground">Category Name</label>
-                <input type="text" name="name" value="{{ old('name', $category->name) }}" required class="w-full px-6 py-4 bg-muted/30 border border-transparent rounded-2xl focus:border-accent focus:bg-white outline-none transition-all font-bold" placeholder="e.g. Artificial Intelligence">
+                <input type="text" name="name" value="{{ old('name', $category->name) }}" required class="w-full px-6 py-4 bg-surface border border-border rounded-2xl focus:border-accent focus:bg-surface outline-none transition-all font-bold text-foreground" placeholder="e.g. Artificial Intelligence">
                 @error('name') <p class="mt-2 text-xs text-danger">{{ $message }}</p> @enderror
             </div>
 
@@ -35,7 +35,7 @@
                 </div>
                 <div>
                     <label class="block text-sm font-bold mb-3 px-1 text-foreground">Icon</label>
-                    <select name="icon" required class="w-full px-4 py-4 bg-muted/30 border border-transparent rounded-xl focus:border-accent focus:bg-white outline-none transition-all text-sm appearance-none cursor-pointer font-bold">
+                    <select name="icon" required class="w-full px-4 py-4 bg-surface border border-border rounded-xl focus:border-accent focus:bg-surface outline-none transition-all text-sm appearance-none cursor-pointer font-bold text-foreground">
                         @foreach(['cpu', 'palette', 'briefcase', 'code', 'bot', 'heart', 'zap', 'camera', 'globe'] as $icon)
                         <option value="{{ $icon }}" {{ $category->icon == $icon ? 'selected' : '' }}>{{ strtoupper($icon) }}</option>
                         @endforeach
@@ -45,7 +45,7 @@
 
             <div>
                 <label class="block text-sm font-bold mb-3 px-1 text-foreground">Description</label>
-                <textarea name="description" rows="3" class="w-full px-6 py-4 bg-muted/30 border border-transparent rounded-2xl focus:border-accent focus:bg-white outline-none transition-all resize-none" placeholder="What kind of stories go here?">{{ old('description', $category->description) }}</textarea>
+                <textarea name="description" rows="3" class="w-full px-6 py-4 bg-surface border border-border rounded-2xl focus:border-accent focus:bg-surface outline-none transition-all resize-none text-foreground" placeholder="What kind of stories go here?">{{ old('description', $category->description) }}</textarea>
             </div>
 
             <button type="submit" class="w-full py-4 bg-primary text-white rounded-2xl font-bold shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
