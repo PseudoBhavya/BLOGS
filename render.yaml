@@ -1,0 +1,49 @@
+services:
+  - type: web
+    name: jobyaari-web
+    env: docker
+    plan: free
+    dockerFilePath: Dockerfile
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_URL
+        fromContext: "https://${RENDER_EXTERNAL_HOSTNAME}"
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: jobyaari-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: jobyaari-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: jobyaari-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: jobyaari-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: jobyaari-db
+          property: password
+      - key: APP_KEY
+        generateValue: true
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: database
+
+databases:
+  - name: jobyaari-db
+    plan: free
+    databaseName: jobyaari
+    user: jobyaari_user
