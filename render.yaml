@@ -3,7 +3,7 @@ services:
     name: jobyaari-web
     env: docker
     plan: free
-    dockerFilePath: Dockerfile
+    dockerfilePath: Dockerfile
     envVars:
       - key: APP_ENV
         value: production
