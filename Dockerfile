@@ -51,9 +51,10 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Set Permissions
 RUN chown -R www-data:www-data storage bootstrap/cache
+RUN chmod +x start.sh
 
 # Expose Port
 EXPOSE 80
 
-# Start Apache
-CMD ["apache2-foreground"]
+# Start with script
+CMD ["./start.sh"]
